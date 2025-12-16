@@ -17,8 +17,8 @@
 body {
   height: 100vh;
   overflow: hidden;
-  background: radial-gradient(circle at center, #220000, #000000 70%);
-  color: #ffcccc;
+  background: radial-gradient(circle at center, #1a0026, #000000 70%);
+  color: #e6ccff;
   perspective: 1400px;
 }
 
@@ -29,8 +29,8 @@ body::after {
   inset: 0;
   background: repeating-linear-gradient(
     to bottom,
-    rgba(255,0,0,0.03),
-    rgba(255,0,0,0.03) 1px,
+    rgba(180,0,255,0.03),
+    rgba(180,0,255,0.03) 1px,
     transparent 2px,
     transparent 4px
   );
@@ -47,14 +47,14 @@ nav {
   display: flex;
   justify-content: flex-end;
   gap: 40px;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.65);
   backdrop-filter: blur(15px);
   z-index: 20;
-  border-bottom: 1px solid rgba(255,0,0,0.3);
+  border-bottom: 1px solid rgba(180,0,255,0.3);
 }
 
 nav a {
-  color: #ff4d4d;
+  color: #c77dff;
   text-decoration: none;
   font-size: 0.9rem;
   cursor: pointer;
@@ -68,8 +68,8 @@ nav a::after {
   left: 0;
   width: 0;
   height: 2px;
-  background: red;
-  box-shadow: 0 0 10px red;
+  background: #b84dff;
+  box-shadow: 0 0 12px #b84dff;
   transition: 0.4s;
 }
 
@@ -92,22 +92,22 @@ canvas {
   width: 200%;
   height: 600px;
   background:
-    linear-gradient(transparent 90%, rgba(255,0,0,0.3)),
+    linear-gradient(transparent 90%, rgba(180,0,255,0.25)),
     repeating-linear-gradient(
       90deg,
-      rgba(255,0,0,0.15) 0,
-      rgba(255,0,0,0.15) 1px,
+      rgba(180,0,255,0.15) 0,
+      rgba(180,0,255,0.15) 1px,
       transparent 40px
     ),
     repeating-linear-gradient(
-      rgba(255,0,0,0.15) 0,
-      rgba(255,0,0,0.15) 1px,
+      rgba(180,0,255,0.15) 0,
+      rgba(180,0,255,0.15) 1px,
       transparent 40px
     );
   transform: rotateX(70deg);
   transform-origin: center;
   filter: blur(0.5px);
-  opacity: 0.5;
+  opacity: 0.45;
 }
 
 /* ===== CONTENT ===== */
@@ -122,13 +122,13 @@ canvas {
 }
 
 .card {
-  background: rgba(0,0,0,0.65);
+  background: rgba(0,0,0,0.7);
   border-radius: 20px;
   padding: 60px;
-  border: 1px solid rgba(255,0,0,0.4);
+  border: 1px solid rgba(180,0,255,0.4);
   box-shadow:
-    0 40px 120px rgba(255,0,0,0.25),
-    inset 0 0 60px rgba(255,0,0,0.15);
+    0 40px 120px rgba(180,0,255,0.25),
+    inset 0 0 60px rgba(180,0,255,0.18);
   backdrop-filter: blur(20px);
   transform-style: preserve-3d;
   transition: transform 0.15s ease;
@@ -148,17 +148,17 @@ canvas {
 h1 {
   font-size: 3.4rem;
   margin-bottom: 20px;
-  color: #ff3333;
+  color: #d580ff;
   text-shadow:
-    0 0 15px rgba(255,0,0,0.6),
-    0 0 40px rgba(255,0,0,0.4);
+    0 0 18px rgba(180,0,255,0.6),
+    0 0 45px rgba(180,0,255,0.4);
 }
 
 p, li {
   font-size: 1.05rem;
   max-width: 720px;
   line-height: 1.9;
-  color: #ffb3b3;
+  color: #e6ccff;
 }
 
 ul {
@@ -167,7 +167,7 @@ ul {
 
 ul li {
   margin: 12px 0;
-  color: #ff6666;
+  color: #c77dff;
 }
 
 /* ===== ANIMATION ===== */
@@ -203,7 +203,7 @@ ul li {
     <div id="home" class="page active">
       <h1>ABHISHEK SAXENA</h1>
       <p>
-         I am Abhishek Saxena, this is my cyber-futuristic personal website.
+        I am Abhishek Saxena, this is my cyber-futuristic personal website.
       </p>
     </div>
 
@@ -254,18 +254,16 @@ const card = document.getElementById("card");
 document.addEventListener("mousemove", e => {
   const x = (window.innerWidth / 2 - e.clientX) / 18;
   const y = (window.innerHeight / 2 - e.clientY) / 18;
-
   card.style.transition = "transform 0.1s ease";
   card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
 });
 
-/* RESET WHEN CURSOR LEAVES */
 document.addEventListener("mouseleave", () => {
   card.style.transition = "transform 0.6s ease";
   card.style.transform = "rotateY(0deg) rotateX(0deg)";
 });
 
-/* ===== RED NETWORK PARTICLES ===== */
+/* ===== PURPLE NETWORK PARTICLES ===== */
 const canvas = document.getElementById("network");
 const ctx = canvas.getContext("2d");
 canvas.width = innerWidth;
@@ -295,7 +293,7 @@ function animate() {
 
     ctx.beginPath();
     ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
-    ctx.fillStyle = "#ff3333";
+    ctx.fillStyle = "#c77dff";
     ctx.fill();
   });
 
@@ -305,7 +303,7 @@ function animate() {
       let dy = particles[i].y - particles[j].y;
       let dist = Math.sqrt(dx*dx + dy*dy);
       if (dist < 140) {
-        ctx.strokeStyle = "rgba(255,0,0,0.2)";
+        ctx.strokeStyle = "rgba(180,0,255,0.25)";
         ctx.beginPath();
         ctx.moveTo(particles[i].x, particles[i].y);
         ctx.lineTo(particles[j].x, particles[j].y);
@@ -324,4 +322,4 @@ window.onresize = () => {
 </script>
 
 </body>
-</html>     
+</html>
